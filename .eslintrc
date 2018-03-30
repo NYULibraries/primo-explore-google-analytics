@@ -1,0 +1,24 @@
+{
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "semi": 2,
+    "no-unused-vars": ["warn"]
+  },
+  "globals": {
+    "__fixtures__": false,
+    "angular": false,
+    "module": false,
+    "inject": false,
+    "document": false
+  },
+  "env": {
+    "jasmine": true
+  },
+  "plugins": [
+    "angular"
+  ]
+}
