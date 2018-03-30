@@ -1,0 +1,5 @@
+{
+  "trackingId": "AB-123456789",
+  "externalScriptURL": "http://example.com",
+  "inlineScript": "console.log('Hello world')"
+}
