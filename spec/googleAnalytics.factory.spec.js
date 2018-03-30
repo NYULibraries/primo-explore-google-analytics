@@ -76,12 +76,12 @@ describe('googleAnalyticsService', () => {
         scripts = getScripts();
       });
 
-      it('should add the default external script tag', () => {
+      it('should add the config\'s external script tag', () => {
         const src = scripts[0].src;
         expect(src).toEqual(googleAnalyticsConfig.externalScriptURL);
       });
 
-      it('should add the default inline script tag', () => {
+      it('should add the config\'s inline script tag', () => {
         const innerText = scripts[1].innerText.replace(/\s+/g,' ').trim();
         expect(innerText).toEqual(googleAnalyticsConfig.inlineScript);
       });
