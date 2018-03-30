@@ -65,7 +65,7 @@ You'll need to configure the module by passing it an object as an angular `const
 | name | type | usage |
 |------|-------------|--------|
 | `trackingId` | string | Adds your google analytics  |
-| `externalScriptURL` *optional* | string |  Specify the source of the external script that is loaded (e.g. `"https://www.googletagmanager.com/gtag/js?id=AB-1234567"`) |
+| `externalScriptURL` *optional* | string |  Specify the source of the external script that is loaded (e.g. `"https://www.googletagmanager.com/gtag/js?id=AB-1234567"`). Use `null` if you don't want an external script to be loaded (for legacy Google Analytics) |
 | `inlineScript` *optional* | string | Specify the inline script tag to be inserted below the external script tag. ||
 
 #### Configuration defaults
@@ -87,4 +87,24 @@ If `externalScriptURL` or `inlineScript` are not specified, the script insertion
     gtag('config', '${TRACKING_ID}');
   </script>
 </head>
+```
+
+#### Example
+
+```js
+app.constant('googleAnalyticsConfig', {
+  trackingId: "AB-123456789",
+  // use null to specify an external script shouldn't be loaded
+  externalScriptURL: null,
+  // copy from script snippet from Google if you're running legacy Google Analytics
+  inlineScript: `var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-XXXXX-X']);
+                _gaq.push(['_trackPageview']);
+
+                (function() {
+                  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();`
+})
 ```

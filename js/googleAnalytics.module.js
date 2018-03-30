@@ -7,7 +7,8 @@ angular.module('googleAnalytics', [])
     const _inlineCode = googleAnalyticsConfig.inlineScript || defaultCode;
 
     const defaultURL = `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsConfig.trackingId}`;
-    const _externalSource = googleAnalyticsConfig.externalScriptURL || defaultURL;
+    const _externalSource = null === googleAnalyticsConfig.externalScriptURL ? null :
+                              googleAnalyticsConfig.externalScriptURL || defaultURL;
 
     return {
       $getExternalSource: _externalSource,
