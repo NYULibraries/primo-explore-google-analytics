@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/NYULibraries/primo-explore-google-analytics#readme",
   "devDependencies": {
+    "@babel/polyfill": "^7.0.0-beta.42",
     "angular": "^1.6.9",
     "angular-mocks": "^1.6.9",
     "babel-core": "^6.26.0",

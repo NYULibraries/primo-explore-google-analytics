@@ -10,7 +10,6 @@ module.exports = function(config) {
       'node_modules/@babel/polyfill/dist/polyfill.js',
       'js/**/*.js',
       'spec/**/*.js',
-      'spec/**/*.spec.js'
     ],
     preprocessors: {
       'js/**/*.js': ['babel'],

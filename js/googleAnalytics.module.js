@@ -29,7 +29,4 @@ angular.module('googleAnalytics', [])
         }
       }
     };
-  }])
-  .run(['gaService', function(gaService) {
-    gaService.injectGACode();
   }]);
