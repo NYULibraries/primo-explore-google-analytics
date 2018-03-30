@@ -19,7 +19,7 @@ Because the root index.html is not directly accessible from custom views, this d
     ```
 4. Install this package:
     ```
-    npm install primo-explore-getit-to-link-resolver --save-dev
+    npm install primo-explore-primo-explore-google-analytics --save-dev
     ```
 
 ## Usage
