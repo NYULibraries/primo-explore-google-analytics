@@ -11,18 +11,18 @@ describe('googleAnalyticsService', () => {
       $provide.constant('googleAnalyticsConfig', googleAnalyticsConfigWithDefaults);
     }));
 
-    let gaService;
-    beforeEach(inject((_gaService_) => {
-      gaService = _gaService_;
+    let gaInjectionService;
+    beforeEach(inject((_gaInjectionService_) => {
+      gaInjectionService = _gaInjectionService_;
     }));
 
     it('should have getters for inlineCode and externalScriptURL', () => {
-      expect(gaService.$getExternalSource).toBeDefined();
-      expect(gaService.$getInlineCode).toBeDefined();
+      expect(gaInjectionService.$getExternalSource).toBeDefined();
+      expect(gaInjectionService.$getInlineCode).toBeDefined();
     });
 
     it('should have injectGACode defined on the service', () => {
-      expect(gaService.injectGACode).toBeDefined();
+      expect(gaInjectionService.injectGACode).toBeDefined();
     });
 
     describe('injectGACode', () => {
@@ -31,7 +31,7 @@ describe('googleAnalyticsService', () => {
       beforeEach(() => {
         const getScripts = () => document.head.querySelectorAll('script');
         Array.from(getScripts()).forEach(script => script.parentNode.removeChild(script));
-        gaService.injectGACode();
+        gaInjectionService.injectGACode();
         scripts = getScripts();
       });
 
@@ -52,18 +52,18 @@ describe('googleAnalyticsService', () => {
       $provide.constant('googleAnalyticsConfig', googleAnalyticsConfig);
     }));
 
-    let gaService;
-    beforeEach(inject((_gaService_) => {
-      gaService = _gaService_;
+    let gaInjectionService;
+    beforeEach(inject((_gaInjectionService_) => {
+      gaInjectionService = _gaInjectionService_;
     }));
 
     it('should have getters for inlineCode and externalScriptURL', () => {
-      expect(gaService.$getExternalSource).toBeDefined();
-      expect(gaService.$getInlineCode).toBeDefined();
+      expect(gaInjectionService.$getExternalSource).toBeDefined();
+      expect(gaInjectionService.$getInlineCode).toBeDefined();
     });
 
     it('should have injectGACode defined on the service', () => {
-      expect(gaService.injectGACode).toBeDefined();
+      expect(gaInjectionService.injectGACode).toBeDefined();
     });
 
     describe('injectGACode', () => {
@@ -72,7 +72,7 @@ describe('googleAnalyticsService', () => {
       beforeEach(() => {
         const getScripts = () => document.head.querySelectorAll('script');
         Array.from(getScripts()).forEach(script => script.parentNode.removeChild(script));
-        gaService.injectGACode();
+        gaInjectionService.injectGACode();
         scripts = getScripts();
       });
 

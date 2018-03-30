@@ -1,5 +1,5 @@
 angular.module('googleAnalytics', [])
-  .factory('gaService', ['googleAnalyticsConfig', function(googleAnalyticsConfig) {
+  .factory('gaInjectionService', ['googleAnalyticsConfig', function(googleAnalyticsConfig) {
     const defaultCode = `window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
                         gtag('js', new Date());
