@@ -4,6 +4,7 @@ const googleAnalyticsConfigWithNullExternalURL = __fixtures__["googleAnalyticsCo
 
 Object.freeze(googleAnalyticsConfig);
 Object.freeze(googleAnalyticsConfigWithDefaults);
+Object.freeze(googleAnalyticsConfigWithNullExternalURL);
 
 describe('googleAnalyticsService', () => {
 
