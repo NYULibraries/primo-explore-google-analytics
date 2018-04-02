@@ -19,9 +19,11 @@ angular.module('googleAnalytics', [])
       $getExternalSource: _externalSource,
       $getInlineCode: _inlineCode,
       injectGACode() {
-        const externalScriptTag = document.createElement('script');
-        externalScriptTag.src = _externalSource;
-        document.head.appendChild(externalScriptTag);
+        if (_externalSource !== null) {
+          const externalScriptTag = document.createElement('script');
+          externalScriptTag.src = _externalSource;
+          document.head.appendChild(externalScriptTag);
+        }
 
         const inlineScriptTag = document.createElement('script');
         inlineScriptTag.type = 'text/javascript';

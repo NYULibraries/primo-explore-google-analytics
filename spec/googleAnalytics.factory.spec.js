@@ -109,9 +109,10 @@ describe('googleAnalyticsService', () => {
       scripts = getScripts();
     });
 
-    it('should have an empty external script tag', () => {
-      const src = scripts[0].src;
-      expect(src).toBeFalsy();
+    it('should have only one inline script', () => {
+      expect(scripts.length).toEqual(1);
+      const innerText = scripts[0].innerText.replace(/\s+/g,' ').trim();
+      expect(innerText).toEqual(googleAnalyticsConfigWithNullExternalURL.inlineScript);
     });
   });
 
