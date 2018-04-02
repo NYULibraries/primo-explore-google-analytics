@@ -1,5 +1,6 @@
 const googleAnalyticsConfig = __fixtures__["googleAnalyticsConfig"];
 const googleAnalyticsConfigWithDefaults = __fixtures__["googleAnalyticsConfigWithDefaults"];
+const googleAnalyticsConfigWithNullExternalURL = __fixtures__["googleAnalyticsConfigWithNullExternalURL"];
 
 Object.freeze(googleAnalyticsConfig);
 Object.freeze(googleAnalyticsConfigWithDefaults);
@@ -85,6 +86,31 @@ describe('googleAnalyticsService', () => {
         const innerText = scripts[1].innerText.replace(/\s+/g,' ').trim();
         expect(innerText).toEqual(googleAnalyticsConfig.inlineScript);
       });
+    });
+
+  });
+
+  describe("with null external script", () => {
+    beforeEach(module('googleAnalytics', function($provide) {
+      $provide.constant('googleAnalyticsConfig', googleAnalyticsConfigWithNullExternalURL);
+    }));
+
+    let gaInjectionService;
+    beforeEach(inject((_gaInjectionService_) => {
+      gaInjectionService = _gaInjectionService_;
+    }));
+
+    let scripts;
+    beforeEach(() => {
+      const getScripts = () => document.head.querySelectorAll('script');
+      Array.from(getScripts()).forEach(script => script.parentNode.removeChild(script));
+      gaInjectionService.injectGACode();
+      scripts = getScripts();
+    });
+
+    it('should have an empty external script tag', () => {
+      const src = scripts[0].src;
+      expect(src).toBeFalsy();
     });
   });
 

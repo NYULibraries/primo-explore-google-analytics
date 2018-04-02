@@ -7,8 +7,13 @@ angular.module('googleAnalytics', [])
     const _inlineCode = googleAnalyticsConfig.inlineScript || defaultCode;
 
     const defaultURL = `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsConfig.trackingId}`;
-    const _externalSource = null === googleAnalyticsConfig.externalScriptURL ? null :
-                              googleAnalyticsConfig.externalScriptURL || defaultURL;
+    let _externalSource;
+
+    if (googleAnalyticsConfig.externalScriptURL === undefined) {
+      _externalSource = defaultURL;
+    } else {
+      _externalSource = googleAnalyticsConfig.externalScriptURL;
+    }
 
     return {
       $getExternalSource: _externalSource,
@@ -21,13 +26,14 @@ angular.module('googleAnalytics', [])
         const inlineScriptTag = document.createElement('script');
         inlineScriptTag.type = 'text/javascript';
 
+        // Methods of adding inner text sometimes doesn't work across browsers.
         try {
           inlineScriptTag.appendChild(document.createTextNode(_inlineCode));
-          document.head.appendChild(inlineScriptTag);
         } catch (e) {
           inlineScriptTag.text = _inlineCode;
-          document.head.appendChild(inlineScriptTag);
         }
+
+        document.head.appendChild(inlineScriptTag);
       }
     };
   }]);
