@@ -37,7 +37,7 @@ let app = angular.module('viewCustom', [
 Then, run the injection through a run block in your AnglularJS Application:
 
 ```js
-  // Folllows run block style conventions. See https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#style-y171
+  // Follows run block style conventions. See https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#style-y171
 
   app
     .run(runBlock);
