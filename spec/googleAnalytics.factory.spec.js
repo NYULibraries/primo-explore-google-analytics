@@ -9,7 +9,7 @@ Object.freeze(googleAnalyticsConfigWithNullExternalURL);
 describe('googleAnalyticsService', () => {
 
   describe("with default config", () => {
-    beforeEach(module('googleAnalytics', function($provide) {
+    beforeEach(module('googleAnalytics', ($provide) => {
       $provide.constant('googleAnalyticsConfig', googleAnalyticsConfigWithDefaults);
     }));
 
@@ -50,7 +50,7 @@ describe('googleAnalyticsService', () => {
   });
 
   describe("with defined script config", () => {
-    beforeEach(module('googleAnalytics', function($provide) {
+    beforeEach(module('googleAnalytics', ($provide) => {
       $provide.constant('googleAnalyticsConfig', googleAnalyticsConfig);
     }));
 
@@ -92,7 +92,7 @@ describe('googleAnalyticsService', () => {
   });
 
   describe("with null external script", () => {
-    beforeEach(module('googleAnalytics', function($provide) {
+    beforeEach(module('googleAnalytics', ($provide) => {
       $provide.constant('googleAnalyticsConfig', googleAnalyticsConfigWithNullExternalURL);
     }));
 
