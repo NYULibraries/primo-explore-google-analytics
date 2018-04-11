@@ -35,6 +35,8 @@
     "karma": "^2.0.0",
     "karma-babel-preprocessor": "^7.0.0",
     "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.1",
+    "karma-coveralls": "^1.1.2",
     "karma-jasmine": "^1.1.1",
     "karma-json-fixtures-preprocessor": "^0.0.6",
     "karma-phantomjs-launcher": "^1.0.4",
