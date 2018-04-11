@@ -3,7 +3,7 @@ angular.module('googleAnalytics', [])
     const defaultCode = `window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
                         gtag('js', new Date());
-                        gtag('config', '${googleAnalyticsConfig.trackingId}');`.replace(/\s/g, "");
+                        gtag('config', '${googleAnalyticsConfig.trackingId}');`;
     const _inlineCode = googleAnalyticsConfig.inlineScript || defaultCode;
 
     const defaultURL = `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsConfig.trackingId}`;
