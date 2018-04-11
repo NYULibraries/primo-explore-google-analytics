@@ -1,4 +1,8 @@
 # primo-explore-google-analytics
+
+[![Build Status](https://travis-ci.org/NYULibraries/primo-explore-google-analytics.svg?branch=master)](https://travis-ci.org/NYULibraries/primo-explore-google-analytics)
+[![Coverage Status](https://coveralls.io/repos/github/NYULibraries/primo-explore-google-analytics/badge.svg?branch=master)](https://coveralls.io/github/NYULibraries/primo-explore-google-analytics?branch=master)
+
 Google Analytics for Primo NUI packages
 
 ## Description
