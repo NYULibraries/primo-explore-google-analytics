@@ -13,8 +13,8 @@ module.exports = function(config) {
       'spec/**/*.js',
     ],
     preprocessors: {
-      'js/**/*.js': ['babel', 'coverage'],
-      'spec/**/*.spec.js': ['babel'],
+      'js/**/*.js': ['webpack', 'coverage'],
+      'spec/**/*.spec.js': ['babel', 'sourcemap'],
       'spec/fixtures/**/*.json': ['json_fixtures'],
     },
     jsonFixturesPreprocessor: {

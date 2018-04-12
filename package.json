@@ -9,7 +9,7 @@
     "babelfy": "yarn babel src --out-dir dist --ignore *.spec.js",
     "build": "yarn babelfy",
     "build:watch": "yarn build --watch",
-    "prepublish": "yarn build"
+    "prepare": "yarn build"
   },
   "repository": {
     "type": "git",
