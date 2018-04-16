@@ -1,5 +1,13 @@
 {
-  "presets": ["es2015"],
-  "plugins": ["istanbul"],
+  "presets": [
+    "es2015"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "istanbul"
+      ],
+    }
+  },
   "sourceMaps": "both"
 }

@@ -13,7 +13,7 @@ module.exports = function(config) {
       'spec/**/*.js',
     ],
     preprocessors: {
-      'js/**/*.js': ['webpack', 'sourcemap'],
+      'js/**/*.js': ['babel', 'sourcemap'],
       'spec/**/*.spec.js': ['babel', 'sourcemap'],
       'spec/fixtures/**/*.json': ['json_fixtures'],
     },
@@ -23,17 +23,6 @@ module.exports = function(config) {
     coverageReporter: {
       type: 'lcov',
       dir: 'coverage/'
-    },
-    webpack: {
-      mode: 'development',
-      module: {
-        rules: [
-          {
-            loader: 'babel-loader'
-          }
-        ]
-      },
-      devtool: 'inline-source-map'
     }
   });
 };
