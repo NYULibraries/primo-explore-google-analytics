@@ -6,9 +6,8 @@
   "scripts": {
     "test": "karma start --single-run",
     "test:chrome-debugger": "karma start --browsers=Chrome --single-run=false --debug",
-    "babelfy": "yarn babel src --out-dir dist --ignore *.spec.js,coverage",
-    "build": "yarn babelfy",
-    "prepare": "BABEL_ENV=production yarn build"
+    "build": "BABEL_ENV=production yarn babel src --out-dir dist --ignore *.spec.js,coverage",
+    "prepare": "yarn build"
   },
   "repository": {
     "type": "git",
