@@ -1,4 +1,7 @@
-angular.module('googleAnalytics', [])
+import "angulartics";
+import "angulartics-google-tag-manager";
+
+angular.module('googleAnalytics', ["angulartics", "angulartics.google.tagmanager"])
   .factory('gaInjectionService', ['googleAnalyticsConfig', function(googleAnalyticsConfig) {
     const defaultCode = `window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
