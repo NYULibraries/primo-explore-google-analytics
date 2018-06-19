@@ -6,8 +6,7 @@
     "development": {
       "plugins": [
         "istanbul"
-      ],
+      ]
     }
-  },
-  "sourceMaps": "both"
+  }
 }
