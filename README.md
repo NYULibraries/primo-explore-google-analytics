@@ -29,12 +29,10 @@ Because the root index.html is not directly accessible from custom views, this d
 
 ## Usage
 
-Once installed, inject `googleAnalytics` as a dependency after `angulartics` and `angulartics.google.tagmanager`:
+Once installed, first add `googleAnalytics` as a dependency:
 
 ```js
 let app = angular.module('viewCustom', [
-  'angulartics',
-  'angulartics.google.tagmanager',
   'googleAnalytics'
 ])
 ```
