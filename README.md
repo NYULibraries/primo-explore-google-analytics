@@ -70,10 +70,7 @@ You'll need to configure the module by passing it an object as an angular `const
 ```html
 <head>
   <!-- ... -->
-  <!-- googleAnalyticsConfig.externaLScriptUrl -->
   <script async src="https://www.googletagmanager.com/gtag/js?id={trackingId}"></script>
-
-  <!-- googleAnalyticsConfig.inlineScript -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -110,4 +107,22 @@ app.constant('googleAnalyticsConfig', {
     })();
   `
 })
+```
+output:
+```html
+<head>
+  <!-- ... -->
+  <!-- or, if included: <script async src="{externalScriptURL}"></script> -->
+  <script>
+  var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'AB-123456789']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
 ```
