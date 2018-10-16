@@ -1,6 +1,6 @@
 {
   "name": "primo-explore-google-analytics",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Google Analytics for Primo NUI packages",
   "main": "./dist/index.js",
   "scripts": {

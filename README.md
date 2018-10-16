@@ -29,57 +29,49 @@ Because the root index.html is not directly accessible from custom views, this d
 
 ## Usage
 
+
 Once installed, first add `googleAnalytics` as a dependency:
 
 ```js
+require('primo-explore-google-analytics');
+// or, in a ESModules compatible environment:
+// import 'primo-explore-google-analytics';
+
 let app = angular.module('viewCustom', [
   'googleAnalytics'
 ])
 ```
 
-Then, run the injection through a run block in your AnglularJS Application:
+Then, run the injection through a run block in your AnglularJS Application. This injection pattern follows "run block style" conventions, allowing for a finer control over the run order of your dependencies and better testing. See https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#style-y171
 
 ```js
-  // Follows run block style conventions. See https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#style-y171
+  app.run(runBlock);
 
-  app
-    .run(runBlock);
-
-    runBlock.$inject = ['gaInjectionService'];
-
-    function runBlock(gaInjectionService) {
-      // other potential run operations...
-      gaInjectionService.injectGACode();
-    }
-```
-
-**Note:** If you're using the --browserify build option, you will need to first import the module with:
-
-```js
-import 'primo-explore-google-analytics';
+  runBlock.$inject = ['gaInjectionService'];
+  function runBlock(gaInjectionService) {
+    // other potential run operations...
+    gaInjectionService.injectGACode();
+  }
 ```
 
 This will add the necessary script tags to the bottom of the `head` of your web document, loading the necessary Google Analytics functionality.
 
 ### Config
 
-You'll need to configure the module by passing it an object as an angular `constant`.
+You'll need to configure the module by passing it an object as an angular `constant` named `googleAnalyticsConfig`.
 
+#### Required
 | name | type | usage |
 |------|-------------|--------|
-| `trackingId` | string | Adds your google analytics  |
-| `externalScriptURL` *optional* | string |  Specify the source of the external script that is loaded (e.g. `"https://www.googletagmanager.com/gtag/js?id=AB-1234567"`). Use `null` if you don't want an external script to be loaded (for legacy Google Analytics) |
-| `inlineScript` *optional* | string | Specify the inline script tag to be inserted below the external script tag. ||
+| `trackingId` | `string` | Adds your GATM tracking id to default scripts ||
 
 #### Configuration defaults
-
-If `externalScriptURL` or `inlineScript` are not specified, the script insertions that are loaded into the DOM are:
 
 ```html
 <head>
   <!-- ... -->
   <!-- googleAnalyticsConfig.externaLScriptUrl -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id={TRACKING_ID}"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id={trackingId}"></script>
 
   <!-- googleAnalyticsConfig.inlineScript -->
   <script>
@@ -87,27 +79,35 @@ If `externalScriptURL` or `inlineScript` are not specified, the script insertion
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', '${TRACKING_ID}');
+    gtag('config', '{trackingId}');
   </script>
 </head>
 ```
 
-#### Example
+#### Optional
+| name | type | usage |
+|------|-------------|--------|
+| `externalScriptURL` | `string` |  If you are using an alternative URL, specify the source of the external script that is loaded. Use `null` if you don't want an external script to be loaded (especially for legacy Google Analytics using an `inlineScript`) |
+| `inlineScript` | `string` | Specify the inline script tag to be inserted below the external script tag. ||
+
+#### Customization Example
 
 ```js
 app.constant('googleAnalyticsConfig', {
-  trackingId: "AB-123456789",
+  trackingId: 'AB-123456789',
   // use null to specify an external script shouldn't be loaded
   externalScriptURL: null,
   // copy from script snippet from Google if you're running legacy Google Analytics
-  inlineScript: `var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-XXXXX-X']);
-                _gaq.push(['_trackPageview']);
+  inlineScript: `
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'AB-123456789']);
+    _gaq.push(['_trackPageview']);
 
-                (function() {
-                  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();`
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  `
 })
 ```
