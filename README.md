@@ -1,6 +1,6 @@
 # primo-explore-google-analytics
 
-[![Build Status](https://travis-ci.org/NYULibraries/primo-explore-google-analytics.svg?branch=master)](https://travis-ci.org/NYULibraries/primo-explore-google-analytics)
+[![CircleCI](https://circleci.com/gh/NYULibraries/primo-explore-google-analytics.svg?style=svg)](https://circleci.com/gh/NYULibraries/primo-explore-google-analytics)
 [![npm version](https://img.shields.io/npm/v/primo-explore-google-analytics.svg)](https://www.npmjs.com/package/primo-explore-google-analytics)
 [![Coverage Status](https://coveralls.io/repos/github/NYULibraries/primo-explore-google-analytics/badge.svg?branch=master)](https://coveralls.io/github/NYULibraries/primo-explore-google-analytics?branch=master)
 
