@@ -2,7 +2,6 @@ import "angulartics";
 import "angulartics-google-tag-manager";
 
 function buildConfig({ externalScriptURL, inlineScript, trackingId }) {
-  console.log(trackingId);
   const defaultCode = `window.dataLayer = window.dataLayer || [];
                           function gtag(){dataLayer.push(arguments);}
                           gtag('js', new Date());
@@ -26,8 +25,6 @@ angular
     return ({
       injectGACode: () => {
         configs.forEach(({ externalSource, inlineCode }) => {
-          console.log(externalSource, inlineCode);
-
           if (externalSource !== null) {
             const externalScriptTag = document.createElement('script');
             externalScriptTag.src = externalSource;
