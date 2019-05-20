@@ -60,6 +60,8 @@ This will add the necessary script tags to the bottom of the `head` of your web 
 
 You'll need to configure the module by passing it an object as an angular `constant` named `googleAnalyticsConfig`.
 
+Optionally, you can also use an array of configurations if you need to add multiple tag managers to your page.
+
 #### Required
 | name | type | usage |
 |------|-------------|--------|
