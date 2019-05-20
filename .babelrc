@@ -1,12 +1,21 @@
 {
   "presets": [
-    "es2015"
+    ["@babel/preset-env", {
+      "targets": "last 2 versions, not dead"
+    }]
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread",
+    "transform-html-import-to-string",
   ],
   "env": {
-    "development": {
+    "test": {
       "plugins": [
-        "istanbul"
+        ["istanbul", {
+          "exclude": ["**/*.spec.js"],
+        }],
       ]
-    }
-  }
+    },
+  },
+  "comments": false,
 }

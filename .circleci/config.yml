@@ -1,0 +1,26 @@
+docker-defaults: &docker-defaults
+  docker:
+    - image: quay.io/nyulibraries/circleci_docker:18.06.3-dc-1.23.2-0
+  working_directory: ~/app
+
+version: 2
+jobs:
+  run-unit-tests:
+    <<: *docker-defaults
+    steps:
+    - checkout
+    - setup_remote_docker
+    - run:
+        name: Run unit tests
+        command: |
+          mkdir -p test-results
+          docker-compose run test
+          docker cp "$(docker ps -q -a -l -f name=test)":/app/test-results test-results
+    - store_test_results:
+        path: test-results
+
+workflows:
+  version: 2
+  test:
+    jobs:
+    - run-unit-tests

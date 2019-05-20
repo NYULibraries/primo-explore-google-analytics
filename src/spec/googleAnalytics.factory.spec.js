@@ -1,12 +1,17 @@
-const googleAnalyticsConfig = __fixtures__["googleAnalyticsConfig"];
-const googleAnalyticsConfigWithDefaults = __fixtures__["googleAnalyticsConfigWithDefaults"];
-const googleAnalyticsConfigWithNullExternalURL = __fixtures__["googleAnalyticsConfigWithNullExternalURL"];
+import googleAnalyticsConfig from './fixtures/googleAnalyticsConfig';
+import googleAnalyticsConfigWithDefaults from './fixtures/googleAnalyticsConfigWithDefaults';
+import googleAnalyticsConfigWithNullExternalURL from './fixtures/googleAnalyticsConfigWithNullExternalURL';
 
 Object.freeze(googleAnalyticsConfig);
 Object.freeze(googleAnalyticsConfigWithDefaults);
 Object.freeze(googleAnalyticsConfigWithNullExternalURL);
 
 describe('googleAnalyticsService', () => {
+
+  let consoleSpy;
+  beforeEach(() => {
+    consoleSpy = spyOn(console, 'log');
+  });
 
   describe("with default config", () => {
     beforeEach(module('googleAnalytics', ($provide) => {
@@ -18,17 +23,11 @@ describe('googleAnalyticsService', () => {
       gaInjectionService = _gaInjectionService_;
     }));
 
-    it('should have getters for inlineCode and externalScriptURL', () => {
-      expect(gaInjectionService.$getExternalSource).toBeDefined();
-      expect(gaInjectionService.$getInlineCode).toBeDefined();
-    });
-
     it('should have injectGACode defined on the service', () => {
       expect(gaInjectionService.injectGACode).toBeDefined();
     });
 
     describe('injectGACode', () => {
-
       let scripts;
       beforeEach(() => {
         const getScripts = () => document.head.querySelectorAll('script');
@@ -59,17 +58,11 @@ describe('googleAnalyticsService', () => {
       gaInjectionService = _gaInjectionService_;
     }));
 
-    it('should have getters for inlineCode and externalScriptURL', () => {
-      expect(gaInjectionService.$getExternalSource).toBeDefined();
-      expect(gaInjectionService.$getInlineCode).toBeDefined();
-    });
-
     it('should have injectGACode defined on the service', () => {
       expect(gaInjectionService.injectGACode).toBeDefined();
     });
 
     describe('injectGACode', () => {
-
       let scripts;
       beforeEach(() => {
         const getScripts = () => document.head.querySelectorAll('script');
@@ -87,8 +80,11 @@ describe('googleAnalyticsService', () => {
         const innerText = scripts[1].innerText.replace(/\s+/g,' ').trim();
         expect(innerText).toEqual(googleAnalyticsConfig.inlineScript);
       });
-    });
 
+      it('executes script content', () => {
+        expect(consoleSpy).toHaveBeenCalledWith('Hello world');
+      });
+    });
   });
 
   describe("with null external script", () => {
@@ -109,11 +105,41 @@ describe('googleAnalyticsService', () => {
       scripts = getScripts();
     });
 
-    it('should have only one inline script', () => {
+    it('has only one inline script', () => {
       expect(scripts.length).toEqual(1);
       const innerText = scripts[0].innerText.replace(/\s+/g,' ').trim();
       expect(innerText).toEqual(googleAnalyticsConfigWithNullExternalURL.inlineScript);
     });
   });
 
+  describe('with an array of configurations', () => {
+    beforeEach(module('googleAnalytics', ($provide) => {
+      $provide.constant('googleAnalyticsConfig', [
+        googleAnalyticsConfig,
+        googleAnalyticsConfigWithNullExternalURL
+      ]);
+    }));
+
+    let gaInjectionService;
+    beforeEach(inject((_gaInjectionService_) => {
+      gaInjectionService = _gaInjectionService_;
+    }));
+
+    let scripts;
+    beforeEach(() => {
+      const getScripts = () => document.head.querySelectorAll('script');
+      Array.from(getScripts()).forEach(script => script.parentNode.removeChild(script));
+      gaInjectionService.injectGACode();
+      scripts = getScripts();
+    });
+
+    it('has three inline scripts', () => {
+      expect(scripts.length).toEqual(3);
+    });
+
+    it('the scripts are inserted in the correct order', () => {
+      const innerText = scripts[1].innerText.replace(/\s+/g, ' ').trim();
+      expect(innerText).toEqual(googleAnalyticsConfigWithNullExternalURL.inlineScript);
+    });
+  });
 });

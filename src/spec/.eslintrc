@@ -7,16 +7,20 @@
   "rules": {
     "semi": 2,
     "no-unused-vars": ["warn"],
-    "no-console": ["error", {
-      "allow": ["warn", "error"]
-    }]
+    "no-console": 0
   },
   "globals": {
-    "angular": true
+    "__fixtures__": false,
+    "angular": false,
+    "module": false,
+    "inject": false,
+    "window": false,
+    "console": false,
+    "Promise": false,
+    "spyOnAllFunctions": false,
   },
   "env": {
-    "browser": true,
-    "es6": true,
+    "jasmine": true,
     "node": true
   }
 }
