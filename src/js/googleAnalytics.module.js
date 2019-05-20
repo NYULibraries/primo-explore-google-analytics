@@ -1,44 +1,51 @@
 import "angulartics";
 import "angulartics-google-tag-manager";
 
-angular.module('googleAnalytics', ["angulartics", "angulartics.google.tagmanager"])
+function buildConfig({ externalScriptURL, inlineScript, trackingId }) {
+  console.log(trackingId);
+  const defaultCode = `window.dataLayer = window.dataLayer || [];
+                          function gtag(){dataLayer.push(arguments);}
+                          gtag('js', new Date());
+                          gtag('config', '${trackingId}');`;
+  const defaultURL = `https://www.googletagmanager.com/gtag/js?id=${trackingId}`;
+
+  return {
+    externalSource: externalScriptURL === undefined ? defaultURL : externalScriptURL,
+    inlineCode: inlineScript || defaultCode,
+  };
+}
+
+angular
+  .module('googleAnalytics', ["angulartics", "angulartics.google.tagmanager"])
   .factory('gaInjectionService', ['googleAnalyticsConfig', function(googleAnalyticsConfig) {
-    const defaultCode = `window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', '${googleAnalyticsConfig.trackingId}');`;
-    const _inlineCode = googleAnalyticsConfig.inlineScript || defaultCode;
 
-    const defaultURL = `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsConfig.trackingId}`;
-    let _externalSource;
+    const configs = Array.isArray(googleAnalyticsConfig) ?
+      googleAnalyticsConfig.map(buildConfig)
+      : [googleAnalyticsConfig].map(buildConfig);
 
-    if (googleAnalyticsConfig.externalScriptURL === undefined) {
-      _externalSource = defaultURL;
-    } else {
-      _externalSource = googleAnalyticsConfig.externalScriptURL;
-    }
+    return ({
+      injectGACode: () => {
+        configs.forEach(({ externalSource, inlineCode }) => {
+          console.log(externalSource, inlineCode);
 
-    return {
-      $getExternalSource: _externalSource,
-      $getInlineCode: _inlineCode,
-      injectGACode() {
-        if (_externalSource !== null) {
-          const externalScriptTag = document.createElement('script');
-          externalScriptTag.src = _externalSource;
-          document.head.appendChild(externalScriptTag);
-        }
+          if (externalSource !== null) {
+            const externalScriptTag = document.createElement('script');
+            externalScriptTag.src = externalSource;
+            document.head.appendChild(externalScriptTag);
+          }
 
-        const inlineScriptTag = document.createElement('script');
-        inlineScriptTag.type = 'text/javascript';
+          const inlineScriptTag = document.createElement('script');
+          inlineScriptTag.type = 'text/javascript';
 
-        // Methods of adding inner text sometimes doesn't work across browsers.
-        try {
-          inlineScriptTag.appendChild(document.createTextNode(_inlineCode));
-        } catch (e) {
-          inlineScriptTag.text = _inlineCode;
-        }
+          // Methods of adding inner text sometimes don't work across browsers.
+          try {
+            inlineScriptTag.appendChild(document.createTextNode(inlineCode));
+          } catch (e) {
+            inlineScriptTag.text = inlineCode;
+          }
 
-        document.head.appendChild(inlineScriptTag);
-      }
-    };
+          document.head.appendChild(inlineScriptTag);
+        });
+      },
+    });
   }]);

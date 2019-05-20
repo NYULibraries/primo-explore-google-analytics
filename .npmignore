@@ -1,5 +1,9 @@
 src/
-.eslintrc
-.babelrc
-.travis.yml
+.*
 karma.conf.js
+yarn-error.log
+test-results
+docker-compose.yml
+Dockerfile
+*.config.js
+yarn.lock
