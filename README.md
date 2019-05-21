@@ -87,7 +87,8 @@ Optionally, you can also use an array of configurations if you need to add multi
 | name | type | usage |
 |------|-------------|--------|
 | `externalScriptURL` | `string` |  If you are using an alternative URL, specify the source of the external script that is loaded. Use `null` if you don't want an external script to be loaded (especially for legacy Google Analytics using an `inlineScript`) |
-| `inlineScript` | `string` | Specify the inline script tag to be inserted below the external script tag. ||
+| `inlineScript` | `string` | Specify the inline script tag to be inserted below the external script tag. |
+| `target` | `string` | (default: `'head'`) What element on the document you would like to append the injected script to. E.g. `body`. Uses `document.querySelector` to find the first instance of the element. ||
 
 #### Customization Example
 
@@ -107,7 +108,8 @@ app.constant('googleAnalyticsConfig', {
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
-  `
+  `,
+  target: 'body',
 })
 ```
 output:
