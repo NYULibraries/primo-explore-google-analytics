@@ -162,12 +162,12 @@ describe('googleAnalyticsService', () => {
         scripts = getScripts();
       });
 
-      it('should add the default external script tag', () => {
+      it('should add the default external script tag to the specified target', () => {
         const src = scripts[0].src;
         expect(src).toEqual(`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsConfig.trackingId}`);
       });
 
-      it('should add the default inline script tag', () => {
+      it('should add the default inline script tag to the specified target', () => {
         const innerText = scripts[1].innerText.replace(/\s+/g, ' ').trim();
         expect(innerText).toContain(`gtag('config', '${googleAnalyticsConfig.trackingId}')`);
       });
