@@ -142,4 +142,35 @@ describe('googleAnalyticsService', () => {
       expect(innerText).toEqual(googleAnalyticsConfigWithNullExternalURL.inlineScript);
     });
   });
+
+  describe('with a defined target', () => {
+    beforeEach(module('googleAnalytics', ($provide) => {
+      $provide.constant('googleAnalyticsConfig', Object.assign({}, googleAnalyticsConfigWithDefaults, { target: 'body' }));
+    }));
+
+    let gaInjectionService;
+    beforeEach(inject((_gaInjectionService_) => {
+      gaInjectionService = _gaInjectionService_;
+    }));
+
+    describe('injectGACode', () => {
+      let scripts;
+      beforeEach(() => {
+        const getScripts = () => document.querySelector('body').querySelectorAll('script');
+        Array.from(getScripts()).forEach(script => script.parentNode.removeChild(script));
+        gaInjectionService.injectGACode();
+        scripts = getScripts();
+      });
+
+      it('should add the default external script tag to the specified target', () => {
+        const src = scripts[0].src;
+        expect(src).toEqual(`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsConfig.trackingId}`);
+      });
+
+      it('should add the default inline script tag to the specified target', () => {
+        const innerText = scripts[1].innerText.replace(/\s+/g, ' ').trim();
+        expect(innerText).toContain(`gtag('config', '${googleAnalyticsConfig.trackingId}')`);
+      });
+    });
+  });
 });

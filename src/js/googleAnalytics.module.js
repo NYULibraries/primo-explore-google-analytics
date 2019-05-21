@@ -1,7 +1,7 @@
 import "angulartics";
 import "angulartics-google-tag-manager";
 
-function buildConfig({ externalScriptURL, inlineScript, trackingId }) {
+function buildConfig({ externalScriptURL, inlineScript, trackingId, target }) {
   const defaultCode = `window.dataLayer = window.dataLayer || [];
                           function gtag(){dataLayer.push(arguments);}
                           gtag('js', new Date());
@@ -11,6 +11,7 @@ function buildConfig({ externalScriptURL, inlineScript, trackingId }) {
   return {
     externalSource: externalScriptURL === undefined ? defaultURL : externalScriptURL,
     inlineCode: inlineScript || defaultCode,
+    target: target || 'head',
   };
 }
 
@@ -24,11 +25,11 @@ angular
 
     return ({
       injectGACode: () => {
-        configs.forEach(({ externalSource, inlineCode }) => {
+        configs.forEach(({ externalSource, inlineCode, target }) => {
           if (externalSource !== null) {
             const externalScriptTag = document.createElement('script');
             externalScriptTag.src = externalSource;
-            document.head.appendChild(externalScriptTag);
+            document.querySelector(target).appendChild(externalScriptTag);
           }
 
           const inlineScriptTag = document.createElement('script');
@@ -41,7 +42,7 @@ angular
             inlineScriptTag.text = inlineCode;
           }
 
-          document.head.appendChild(inlineScriptTag);
+          document.querySelector(target).appendChild(inlineScriptTag);
         });
       },
     });
