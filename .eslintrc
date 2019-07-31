@@ -6,17 +6,18 @@
   },
   "rules": {
     "semi": 2,
-    "no-unused-vars": ["warn"],
-    "no-console": ["error", {
-      "allow": ["warn", "error"]
-    }]
+    "no-unused-vars": ["warn"]
   },
   "globals": {
-    "angular": true
+    "__fixtures__": false,
+    "angular": false,
+    "module": false,
+    "inject": false
   },
   "env": {
-    "browser": true,
-    "es6": true,
-    "node": true
-  }
+    "jasmine": true
+  },
+  "plugins": [
+    "angular"
+  ]
 }

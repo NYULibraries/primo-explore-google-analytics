@@ -1,9 +1,9 @@
 src/
 .*
-karma.conf.js
 yarn-error.log
+*.conf*.js
+screenshot*
 test-results
-docker-compose.yml
+*.log
 Dockerfile
-*.config.js
-yarn.lock
+docker-compose.yml

@@ -4,10 +4,6 @@
       "targets": "last 2 versions, not dead"
     }]
   ],
-  "plugins": [
-    "@babel/plugin-proposal-object-rest-spread",
-    "transform-html-import-to-string",
-  ],
   "env": {
     "test": {
       "plugins": [
