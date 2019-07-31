@@ -17,6 +17,10 @@ services:
     command: yarn test --browsers=ChromiumHeadless_without_sandbox --single-run=false
     environment:
       NODE_ENV: test
-    volumes:
-      - ./src/:/app/src/
-      - ./karma.conf.js:/app/karma.conf.js
+    # volumes:
+    #   - ./src/:/app/src/
+    #   - ./karma.conf.js:/app/karma.conf.js
+  pack:
+    build:
+      context: .
+    command: yarn publish-dry-run
