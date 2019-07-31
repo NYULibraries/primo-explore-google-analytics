@@ -6,8 +6,9 @@
   "scripts": {
     "test": "NODE_ENV=test yarn karma start --browsers=ChromeHeadless --single-run",
     "test:chrome-debugger": "yarn karma start --browsers=Chrome --single-run=false --debug",
-    "build": "yarn webpack --mode=production",
-    "prepare": "yarn rimraf dist/* && yarn build"
+    "build": "webpack --mode=production",
+    "prepare": "rimraf dist/* && yarn build",
+    "publish-dry-run": "yarn prepare && yarn pack --filename primo-explore-google-analytics.tgz"
   },
   "repository": {
     "type": "git",
