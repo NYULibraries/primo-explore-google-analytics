@@ -854,15 +854,15 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
-angular-mocks@^1.7.8:
-  version "1.7.8"
-  resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.7.8.tgz#95e7887ca91d1a3e176cc22f2d1941d284ce9767"
-  integrity sha512-LB13ESBT0eJrhQhfPXyLR9qm4LI9g44hyBFwUqZKEHEA4DpfxVTu0ONipiNoN0zWtmEAezA8u2gjcoaO2TStig==
+angular-mocks@1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.3.tgz#12fafc0f1e0903f16864004ba375bf3fb9101ef1"
+  integrity sha1-Evr8Dx4JA/FoZABLo3W/P7kQHvE=
 
-angular@^1.7.8:
-  version "1.7.8"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.8.tgz#b77ede272ce1b261e3be30c1451a0b346905a3c9"
-  integrity sha512-wtef/y4COxM7ZVhddd7JtAAhyYObq9YXKar9tsW7558BImeVYteJiTxCKeJOL45lJ/+7B4wrAC49j8gTFYEthg==
+angular@1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.3.tgz#5d34b799234e8fa17c6a3a14e0258733935f43e7"
+  integrity sha1-XTS3mSNOj6F8ajoU4CWHM5NfQ+c=
 
 angulartics-google-tag-manager@^0.0.1:
   version "0.0.1"
