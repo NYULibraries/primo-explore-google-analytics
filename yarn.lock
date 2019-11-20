@@ -849,10 +849,10 @@ angular-mocks@1.6.3:
   resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.3.tgz#12fafc0f1e0903f16864004ba375bf3fb9101ef1"
   integrity sha1-Evr8Dx4JA/FoZABLo3W/P7kQHvE=
 
-angular@1.6.3:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.3.tgz#5d34b799234e8fa17c6a3a14e0258733935f43e7"
-  integrity sha1-XTS3mSNOj6F8ajoU4CWHM5NfQ+c=
+angular@1.7.9:
+  version "1.7.9"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.9.tgz#e52616e8701c17724c3c238cfe4f9446fd570bc4"
+  integrity sha512-5se7ZpcOtu0MBFlzGv5dsM1quQDoDeUTwZrWjGtTNA7O88cD8TEk5IEKCTDa3uECV9XnvKREVUr7du1ACiWGFQ==
 
 angulartics-google-tag-manager@^0.0.1:
   version "0.0.1"
