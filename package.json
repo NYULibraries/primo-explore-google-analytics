@@ -40,7 +40,7 @@
     "karma-sourcemap-loader": "^0.3.8",
     "karma-spec-reporter": "^0.0.32",
     "karma-webpack": "^4.0.2",
-    "puppeteer": "^1.20.0",
+    "puppeteer": "^5.4.1",
     "raw-loader": "^3.1.0",
     "rimraf": "^2.6.3",
     "webpack": "^4.44.2",
