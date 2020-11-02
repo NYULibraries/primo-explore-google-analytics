@@ -1,6 +1,6 @@
 docker-defaults: &docker-defaults
   docker:
-    - image: quay.io/nyulibraries/circleci_docker:18.06.3-dc-1.23.2-0
+    - image: quay.io/nyulibraries/circleci_docker:18.06.3-dc-1.24.1-0
   working_directory: ~/app
 
 version: 2
@@ -9,7 +9,8 @@ jobs:
     <<: *docker-defaults
     steps:
     - checkout
-    - setup_remote_docker
+    - setup_remote_docker:
+        version: 19.03.13
     - run:
         name: Run unit tests
         command: |
@@ -21,7 +22,8 @@ jobs:
     <<: *docker-defaults
     steps:
     - checkout
-    - setup_remote_docker
+    - setup_remote_docker:
+        version: 19.03.13
     - run:
         name: Builds package in Docker container and copies out
         command: |
