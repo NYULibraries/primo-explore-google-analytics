@@ -1,6 +1,7 @@
 const path = require('path');
 
 const webpackConfig = {
+  mode: 'development',
   entry: {
     index: path.resolve(__dirname, 'src/index.js'),
   },
@@ -17,7 +18,7 @@ const webpackConfig = {
       }
     ]
   },
-  devtool: 'sourcemap',
+  devtool: 'eval-cheap-source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
