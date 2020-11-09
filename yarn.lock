@@ -896,10 +896,10 @@ ajv@^6.12.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-angular-mocks@1.6.3:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.3.tgz#12fafc0f1e0903f16864004ba375bf3fb9101ef1"
-  integrity sha1-Evr8Dx4JA/FoZABLo3W/P7kQHvE=
+angular-mocks@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.8.0.tgz#9d161fe2102e47e46ff78a4226e4dfec27c060c4"
+  integrity sha512-oFKJIqR6zcsW6V9UQMuUYCXIcTy+n7oYExXxZkvU57hwJQdU1nuNZcSMQA9URiEAPyo7v3bqm0eOP3Ezi7Bigg==
 
 angular@^1.8.0:
   version "1.8.0"
