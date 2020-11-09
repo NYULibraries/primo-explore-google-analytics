@@ -4,7 +4,7 @@ process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = function (config) {
   config.set({
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine','webpack'],
     reporters: [
       'spec',
       'junit',
@@ -29,7 +29,7 @@ module.exports = function (config) {
       module: {
         rules: webpackConfig.module.rules,
       },
-      devtool: 'inline-source-map',
+      devtool: 'eval-cheap-source-map',
       externals: {
         angular: 'angular',
       },

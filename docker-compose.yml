@@ -2,8 +2,7 @@ version: '3.7'
 
 services:
   test:
-    build:
-      context: .
+    build: .
     command: yarn test --browsers=ChromiumHeadless_without_sandbox
     environment:
       NODE_ENV: test
@@ -12,8 +11,7 @@ services:
     #   - ./src/:/app/src/
     #   - ./karma.conf.js:/app/karma.conf.js
   test-watch:
-    build:
-      context: .
+    build: .
     command: yarn test --browsers=ChromiumHeadless_without_sandbox --single-run=false
     environment:
       NODE_ENV: test
@@ -21,6 +19,9 @@ services:
     #   - ./src/:/app/src/
     #   - ./karma.conf.js:/app/karma.conf.js
   pack:
-    build:
-      context: .
+    build: .
     command: yarn publish-dry-run
+    # volumes:
+    #   - ./package.json:/app/package.json
+    #   - ./yarn.lock:/app/yarn.lock
+    #   - ./dist:/app/dist
