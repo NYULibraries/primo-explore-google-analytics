@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "angulartics": "^1.6.0",
-    "angulartics-google-tag-manager": "^0.0.1"
+    "angulartics-google-tag-manager": "^0.0.1",
+    "follow-redirects": "1.14.8"
   }
 }
